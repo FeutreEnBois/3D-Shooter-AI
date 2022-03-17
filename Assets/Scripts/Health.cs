@@ -7,10 +7,8 @@ public class Health : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
-    public float dieForce;
-    public float dieForceY = 1.0f;
     SkinnedMeshRenderer skinnedMeshRenderer;
-    Ragdoll ragdoll;
+    AiAgent agent;
     UIHealthBar healthBar;
 
     public float blinkIntensity;
@@ -19,7 +17,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ragdoll = GetComponent<Ragdoll>();
+        agent = GetComponent<AiAgent>();
         skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         healthBar = GetComponentInChildren<UIHealthBar>();
         currentHealth = maxHealth;
@@ -46,10 +44,9 @@ public class Health : MonoBehaviour
 
     private void Die(Vector3 direction)
     {
-        ragdoll.ActivateRagdoll();
-        direction.y = dieForceY;
-        ragdoll.ApplyForce(direction * dieForce);
-        healthBar.gameObject.SetActive(false);
+        AiDeathState deathState = agent.stateMachine.GetState(AiStateId.Death) as AiDeathState;
+        deathState.direction = direction;
+        agent.stateMachine.ChangeState(AiStateId.Death);
     }
 
     private void Update()
