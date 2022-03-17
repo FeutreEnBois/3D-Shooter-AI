@@ -24,7 +24,7 @@ public class RaycastWeapon : MonoBehaviour
     public Transform raycastOrigin;
     public Transform raycastDestination;
     public TrailRenderer trailRenderer;
-
+    public AnimationClip weaponAnimation;
     Ray ray;
     RaycastHit hitInfo;
     float accumulatedTime; // when are we suppose to fire a bullet

@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTimer: 1
   maxDistance: 1
+  dieForce: 5
+  dieForceY: 0.5
+  maxSightDistance: 5
