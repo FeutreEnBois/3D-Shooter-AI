@@ -7,12 +7,21 @@ public class Health : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
-
+    public float dieForce;
+    public float dieForceY = 1.0f;
+    SkinnedMeshRenderer skinnedMeshRenderer;
     Ragdoll ragdoll;
+    UIHealthBar healthBar;
+
+    public float blinkIntensity;
+    public float blinkDuration;
+    float blinkTimer;
     // Start is called before the first frame update
     void Start()
     {
         ragdoll = GetComponent<Ragdoll>();
+        skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        healthBar = GetComponentInChildren<UIHealthBar>();
         currentHealth = maxHealth;
 
         var rigiBodies = GetComponentsInChildren<Rigidbody>();
@@ -26,14 +35,28 @@ public class Health : MonoBehaviour
     public void TakeDamage(float amount, Vector3 direction)
     {
         currentHealth -= amount;
-        if(currentHealth < 0)
+        healthBar.SetHealthBarPercentage(currentHealth/maxHealth);
+        if (currentHealth <= 0)
         {
-            Die();
+            Die(direction);
         }
+
+        blinkTimer = blinkDuration;
     }
 
-    private void Die()
+    private void Die(Vector3 direction)
     {
         ragdoll.ActivateRagdoll();
+        direction.y = dieForceY;
+        ragdoll.ApplyForce(direction * dieForce);
+        healthBar.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        blinkTimer -= Time.deltaTime;
+        float lerp = Mathf.Clamp01(blinkTimer / blinkDuration);
+        float intensity = (lerp * blinkIntensity) + 1.0f;
+        skinnedMeshRenderer.material.color = Color.white * intensity;
     }
 }
