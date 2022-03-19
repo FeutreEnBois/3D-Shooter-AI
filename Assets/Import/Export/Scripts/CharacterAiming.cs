@@ -11,8 +11,6 @@ public class CharacterAiming : MonoBehaviour
 
     Camera mainCamera;
 
-    public Rig aimLayer;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -30,19 +28,6 @@ public class CharacterAiming : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (aimLayer)
-        {
-            if (Input.GetMouseButton(1))
-            {
-                aimLayer.weight += Time.deltaTime / aimDuration;
-            }
-            else
-            {
-                aimLayer.weight -= Time.deltaTime / aimDuration;
-            }
-            aimLayer.weight = 1.0f;
-        }
-
 
     }
 }
