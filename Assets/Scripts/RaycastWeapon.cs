@@ -22,9 +22,9 @@ public class RaycastWeapon : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public ParticleSystem hitEffect;
     public Transform raycastOrigin;
-    public Transform raycastDestination;
     public TrailRenderer trailRenderer;
     public string weaponName;
+    public LayerMask layerMask;
 
     Ray ray;
     RaycastHit hitInfo;
@@ -52,22 +52,36 @@ public class RaycastWeapon : MonoBehaviour
     public void StartFiring()
     {
         isFiring = true;
-
-        FireBullet();
+        if(accumulatedTime > 0f)
+        {
+            accumulatedTime = 0f;
+        }
+        
     }
 
 
-    public void UpadateFiring(float deltaTime)
+    public void UpadateFiring(float deltaTime, Vector3 target)
     {
-        accumulatedTime += deltaTime;
+        
         float fireInterval = 1.0f / fireRate;
         while(accumulatedTime >= 0.0)
         {
-            FireBullet();
+            FireBullet(target);
             accumulatedTime -= fireInterval;
         }
     }
 
+    public void UpdateWeapon(float deltaTime, Vector3 target)
+    {
+        if (isFiring)
+        {
+            UpadateFiring(deltaTime, target);
+        }
+        accumulatedTime += deltaTime;
+        UpdateBullets(deltaTime);
+
+
+    }
     public void UpdateBullets(float deltatime)
     {
         SimulateBullets(deltatime);
@@ -96,7 +110,7 @@ public class RaycastWeapon : MonoBehaviour
         float distance = (end - start).magnitude;
         ray.origin = start;
         ray.direction = direction;
-        if (Physics.Raycast(ray, out hitInfo, distance))
+        if (Physics.Raycast(ray, out hitInfo, distance, layerMask))
         {
             hitEffect.transform.position = hitInfo.point;
             hitEffect.transform.forward = hitInfo.normal;
@@ -105,6 +119,7 @@ public class RaycastWeapon : MonoBehaviour
             bullet.tracer.transform.position = hitInfo.point;
             bullet.time = maxLifeTime;
 
+            // Collision Impulse
             var rb2b = hitInfo.collider.GetComponent<Rigidbody>();
             if(rb2b)
             {
@@ -123,11 +138,11 @@ public class RaycastWeapon : MonoBehaviour
         }
     }
 
-    private void FireBullet()
+    private void FireBullet(Vector3 target)
     {
         muzzleFlash.Emit(1);
 
-        Vector3 velocity = (raycastDestination.position - raycastOrigin.position).normalized * bulletSpeed;
+        Vector3 velocity = (target - raycastOrigin.position).normalized * bulletSpeed;
         var bullet = CreateBullet(raycastOrigin.position, velocity);
         bullets.Add(bullet);
 

@@ -9789,6 +9789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4233119882047762362}
   - component: {fileID: 4233119882047762363}
+  - component: {fileID: 4514628504217086751}
   m_Layer: 0
   m_Name: WeaponWaterGun_Pistol
   m_TagString: Untagged
@@ -9827,7 +9828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFiring: 0
-  fireRate: 2
+  fireRate: 3
   bulletSpeed: 1000
   bulletDrop: 0
   maxLifeTime: 1
@@ -9835,9 +9836,24 @@ MonoBehaviour:
   muzzleFlash: {fileID: 4071066099026706759}
   hitEffect: {fileID: 6208985984611006673}
   raycastOrigin: {fileID: 4233119880754781917}
-  raycastDestination: {fileID: 0}
   trailRenderer: {fileID: 9056344628222986320, guid: 004823168560bc84e8465f9971c3963b, type: 3}
   weaponName: Pistol
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1025
+--- !u!65 &4514628504217086751
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233119882047762361}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.070318446, y: 0.17045432, z: 0.2576005}
+  m_Center: {x: -0.0045320466, y: 0.0003620237, z: 0.07013634}
 --- !u!1 &6119316572191896185
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class AiDeathState : AiState
         agent.ragdoll.ApplyForce(direction * agent.config.dieForce);
         agent.ui.gameObject.SetActive(false);
         agent.mesh.updateWhenOffscreen = true;
+        agent.weapons.DropWeapon();
     }
 
     public void Exit(AiAgent agent)

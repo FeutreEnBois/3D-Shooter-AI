@@ -9,6 +9,7 @@ public class AiFindWeaponState : AiState
         WeaponPickup pickup = FindCloseWeapon(agent);
         agent.navMeshAgent.destination = pickup.transform.position;
         agent.navMeshAgent.speed = 5;
+        
     }
 
     public void Exit(AiAgent agent)
@@ -24,7 +25,7 @@ public class AiFindWeaponState : AiState
     {
         if (agent.weapons.HasWeapon())
         {
-            agent.weapons.ActivateWeapon();
+            agent.stateMachine.ChangeState(AiStateId.AttackPlayer);
         }
     }
 

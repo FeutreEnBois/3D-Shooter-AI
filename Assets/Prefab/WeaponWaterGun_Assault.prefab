@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &557337240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 557337241}
+  - component: {fileID: 1609457690355728906}
+  m_Layer: 0
+  m_Name: ----Raycast--
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &557337241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557337240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4233119882047762362}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1609457690355728906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557337240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4185940bd439854ab2c4cbd21a8f1fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1460977619416350411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8165457361136060740}
+  m_Layer: 0
+  m_Name: ----FX-------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8165457361136060740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460977619416350411}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4228976074360614921}
+  - {fileID: 6117876328796711799}
+  m_Father: {fileID: 4233119882047762362}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4231136562738856057
 GameObject:
   m_ObjectHideFlags: 0
@@ -4899,13 +4974,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4231450292889681363}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.03, z: 0.889}
+  m_LocalRotation: {x: -0, y: 1.0047517e-13, z: -9.5248245e-12, w: 1}
+  m_LocalPosition: {x: 0, y: -0.029999875, z: 0.8889998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4229332549688502181}
-  m_Father: {fileID: 4233119882047762362}
-  m_RootOrder: 1
+  m_Father: {fileID: 8165457361136060740}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &4071066099026706759
 ParticleSystem:
@@ -10128,6 +10203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4233119880754781917}
+  - component: {fileID: 375716880}
   m_Layer: 0
   m_Name: RaycastOrigin
   m_TagString: Untagged
@@ -10147,8 +10223,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4233119882047762362}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &375716880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233119880754781916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4185940bd439854ab2c4cbd21a8f1fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4233119882047762361
 GameObject:
   m_ObjectHideFlags: 0
@@ -10159,6 +10247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4233119882047762362}
   - component: {fileID: 4233119882047762363}
+  - component: {fileID: 3624728866758852032}
   m_Layer: 0
   m_Name: WeaponWaterGun_Assault
   m_TagString: Untagged
@@ -10173,14 +10262,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4233119882047762361}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4228804513733688345}
-  - {fileID: 4228976074360614921}
   - {fileID: 4233119880754781917}
-  - {fileID: 6117876328796711799}
+  - {fileID: 557337241}
+  - {fileID: 8165457361136060740}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10197,7 +10286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFiring: 0
-  fireRate: 15
+  fireRate: 10
   bulletSpeed: 1000
   bulletDrop: 130
   maxLifeTime: 1
@@ -10205,9 +10294,24 @@ MonoBehaviour:
   muzzleFlash: {fileID: 4071066099026706759}
   hitEffect: {fileID: 6208985984611006673}
   raycastOrigin: {fileID: 4233119880754781917}
-  raycastDestination: {fileID: 0}
   trailRenderer: {fileID: 9056344628222986320, guid: 004823168560bc84e8465f9971c3963b, type: 3}
   weaponName: Assault
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1025
+--- !u!65 &3624728866758852032
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233119882047762361}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.11653276, y: 0.23453711, z: 0.85133207}
+  m_Center: {x: 0.0074745044, y: -0.06595076, z: 0.453721}
 --- !u!1 &6119316572191896185
 GameObject:
   m_ObjectHideFlags: 0
@@ -19559,15 +19663,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6119817550071480667}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.019, z: -0.021}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalRotation: {x: -0, y: 1.0047517e-13, z: -9.5248245e-12, w: 1}
+  m_LocalPosition: {x: 0, y: -0.01899987, z: -0.021001182}
+  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_Children:
   - {fileID: 6123094623725917215}
   - {fileID: 6122718418258350115}
   - {fileID: 6122753502099061311}
-  m_Father: {fileID: 4233119882047762362}
-  m_RootOrder: 3
+  m_Father: {fileID: 8165457361136060740}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6208985984611006673
 ParticleSystem:

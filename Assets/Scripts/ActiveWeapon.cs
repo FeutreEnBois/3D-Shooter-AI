@@ -28,21 +28,19 @@ public class ActiveWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(weapon != null)
         {
             if (Input.GetButtonDown("Fire1"))
             {
                 weapon.StartFiring();
             }
-            if (weapon.isFiring)
-            {
-                weapon.UpadateFiring(Time.deltaTime);
-            }
-            weapon.UpdateBullets(Time.deltaTime);
             if (Input.GetButtonUp("Fire1"))
             {
                 weapon.StopFiring();
             }
+            weapon.UpdateWeapon(Time.deltaTime, crosshairTarget.position);
+
             if (Input.GetKeyDown(KeyCode.X))
             {
                 bool isHolsted = rigController.GetBool("holster_weapon");
@@ -59,10 +57,21 @@ public class ActiveWeapon : MonoBehaviour
             Destroy(weapon.gameObject);
         }
         weapon = newWeapon;
-        weapon.raycastDestination = crosshairTarget;
         weapon.transform.parent = weaponParent;
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
         rigController.Play("equip_" + weapon.weaponName);
+    }
+
+    public void DropWeapon()
+    {
+        var currentWeapon = weapon;
+        if (currentWeapon)
+        {
+            currentWeapon.transform.SetParent(null);
+            currentWeapon.gameObject.GetComponent<BoxCollider>().enabled = true;
+            currentWeapon.gameObject.AddComponent<Rigidbody>();
+            weapon = null;
+        }
     }
 }
