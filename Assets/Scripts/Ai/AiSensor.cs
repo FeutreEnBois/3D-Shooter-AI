@@ -15,8 +15,15 @@ public class AiSensor : MonoBehaviour
     public LayerMask layers;
     public LayerMask occlusionLayers;
 
-    public List<GameObject> Objects = new List<GameObject>();
-
+    public List<GameObject> Objects
+    {
+        get
+        {
+            objects.RemoveAll(obj => !obj);
+            return objects;
+        }
+    }
+    private List<GameObject> objects = new List<GameObject>();
     Collider[] colliders = new Collider[50];
     Mesh mesh;
 
@@ -45,13 +52,13 @@ public class AiSensor : MonoBehaviour
     {
         count = Physics.OverlapSphereNonAlloc(transform.position, distance, colliders, layers, QueryTriggerInteraction.Collide);
 
-        Objects.Clear();
+        objects.Clear();
         for (int i = 0; i < count; i++)
         {
             GameObject obj = colliders[i].gameObject;
             if (IsInSight(obj))
             {
-                Objects.Add(obj);
+                objects.Add(obj);
             }
         }
 
@@ -62,7 +69,7 @@ public class AiSensor : MonoBehaviour
         Vector3 origin = transform.position;
         Vector3 dest = obj.transform.position;
         Vector3 direction = dest - origin;
-        if(direction.y < 0 || direction.y > height)
+        if(direction.y <= -1 || direction.y >= height)
         {
             return false;
         }
@@ -80,6 +87,7 @@ public class AiSensor : MonoBehaviour
         {
             return false;
         }
+
         return true;
     }
 
@@ -181,16 +189,30 @@ public class AiSensor : MonoBehaviour
             Gizmos.DrawMesh(mesh,transform.position,transform.rotation);
         }
 
-        Gizmos.DrawWireSphere(transform.position, distance);
-        for (int i = 0; i < count; i++)
-        {
-            Gizmos.DrawSphere(colliders[i].transform.position, 0.2f);
-        }
-
         Gizmos.color = Color.green;
         foreach (var obj in Objects)
         {
             Gizmos.DrawSphere(obj.transform.position, 0.2f);
         }
+    }
+
+    public int Filter(GameObject[] buffer, string layerName)
+    {
+        int layer = LayerMask.NameToLayer(layerName);
+        int count = 0;
+        foreach(var obj in Objects)
+        {
+            if(obj.layer == layer)
+            {
+                buffer[count++] = obj;
+            }
+
+            if(buffer.Length == count)
+            {
+                break;
+            }
+        }
+
+        return count;   
     }
 }
