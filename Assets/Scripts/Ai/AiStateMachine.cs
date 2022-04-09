@@ -33,6 +33,7 @@ public class AiStateMachine
 
     public void ChangeState(AiStateId newState)
     {
+        agent.currentState = newState;
         GetState(currentState)?.Exit(agent);
         currentState = newState;
         GetState(currentState)?.Enter(agent);

@@ -33,11 +33,9 @@ public class PlayerHealth : Health
         Vignette vignette;
         if(postProcessing.TryGet(out vignette))
         {
-            Debug.Log("vignette");
-            Debug.Log(currentHealth / maxHealth);
             float percent = 1.0f - (currentHealth / maxHealth);
             vignette.intensity.value = percent * 0.5f ;
-            Debug.Log(vignette.intensity.value);
+
         }
     }
 }

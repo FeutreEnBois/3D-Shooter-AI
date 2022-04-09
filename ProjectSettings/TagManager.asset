@@ -18,8 +18,8 @@ TagManager:
   - Pickup
   - Character
   - Hitbox
-  - 
-  - 
+  - Player
+  - LineOfSight
   - 
   - 
   - 

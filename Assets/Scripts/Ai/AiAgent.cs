@@ -7,6 +7,7 @@ public class AiAgent : MonoBehaviour
 {
     public AiStateMachine stateMachine;
     public AiStateId initialState;
+    public AiStateId currentState;
     public NavMeshAgent navMeshAgent;
     public AiAgentConfig config;
 
@@ -17,11 +18,14 @@ public class AiAgent : MonoBehaviour
     public AiWeapon weapons;
     public AiSensor sensor;
 
+    public EnemyMovement hideMovement;
+
     // Start is called before the first frame update
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        hideMovement = GetComponent<EnemyMovement>();
         weapons = GetComponent<AiWeapon>();
         sensor = GetComponent<AiSensor>();
         mesh = GetComponentInChildren<SkinnedMeshRenderer>();
@@ -32,6 +36,7 @@ public class AiAgent : MonoBehaviour
         stateMachine.RegisterState(new AiIdleState());
         stateMachine.RegisterState(new AiFindWeaponState());
         stateMachine.RegisterState(new AiAttackPlayerState());
+        stateMachine.RegisterState(new AiHideState());
         stateMachine.ChangeState(initialState);
     }
 

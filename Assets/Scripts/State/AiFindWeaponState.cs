@@ -53,7 +53,7 @@ public class AiFindWeaponState : AiState
 
         if (agent.weapons.HasWeapon())
         {
-            agent.stateMachine.ChangeState(AiStateId.AttackPlayer);
+            agent.stateMachine.ChangeState(AiStateId.Hide);
         }
     }
 

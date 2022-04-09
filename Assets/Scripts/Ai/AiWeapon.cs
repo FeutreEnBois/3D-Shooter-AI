@@ -32,6 +32,8 @@ public class AiWeapon : MonoBehaviour
 
     public void SetFiring(bool enabled)
     {
+        if (currentWeapon == null) return;
+
         if (enabled)
         {
             currentWeapon.StartFiring();
